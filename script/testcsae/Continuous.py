@@ -29,7 +29,6 @@ FDFR_KEY ='| grep pref_fdfr_key'
 PICTURE_SIZE_KEY ='| grep pref_camera_picture_size_key'
 HINTS_KEY ='| grep pref_camera_hints_key'
 TIMER_KEY ='| grep pref_camera_delay_shooting_key'
-WhiteBalance
 WHITEBALANCE ='| grep pref_camera_whitebalance_key'
 #################################
 
