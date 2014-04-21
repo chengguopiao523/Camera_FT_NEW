@@ -1,6 +1,6 @@
 [tests]
 script.Continuous.CameraTest.testContinuousCapturePictureWithFlashOn = 1
-script.Continuous.CameraTest.testContinuousCapturePictureWithFlashOff(self) = 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithFlashOff= 1
 script.Continuous.CameraTest.testContinuousCapturePictureWithFlashAuto = 1
 script.Continuous.CameraTest.testContinuousCaptureWithExposureAuto = 1
 script.Continuous.CameraTest.testContinuousCaptureWithExposurePlusOne = 1
