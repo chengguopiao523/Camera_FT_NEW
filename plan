@@ -1,0 +1,94 @@
+[tests]
+script.Continuous.CameraTest.testContinuousCapturePictureWithFlashOn = 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithFlashOff(self) = 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithFlashAuto = 1
+script.Continuous.CameraTest.testContinuousCaptureWithExposureAuto = 1
+script.Continuous.CameraTest.testContinuousCaptureWithExposurePlusOne = 1
+script.Continuous.CameraTest.testContinuousCaptureWithExposurePlusTwo= 1
+script.Continuous.CameraTest.testContinuousCaptureWithExposureRedOne= 1
+script.Continuous.CameraTest.testContinuousCaptureWithExposureRedTwo= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesAuto= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesSport= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesNightportrait= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesPortrait= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesBarcode= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesLandscape= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithScenesNight= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithFDON= 1
+script.Continuous.CameraTest.testContinuousCaptureWithPictureSizeWidesreen= 1
+script.Continuous.CameraTest.testContinuousCapturePictureWithPictureSizeStandard= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithGeoLocationOn= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithGeoLocationOff= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithHintsOn= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithHintsOff= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithSelfTimerOff= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithSelfTimerThreeSec= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithSelfTimerFiveSec= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithSelfTimerTenSec= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithISOAuto= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithISOHundred= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithISOTwoHundred= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithISOFourHundred= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithISOEightHundred= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithWhiteBalanceAuto= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithWhiteBalanceIncandescent= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithWhiteBalanceDaylight= 1
+script.Continuous.CameraTest.testContinuousCapturepictureWithWhiteBalanceFluorescent= 1
+script.Continuous.CameraTest.testCapturepictureWithWhiteBalanceCloudy= 1
+script.Continuous.CameraTest.testCapturePictureWithFDOff= 1
+script.Continuous.CameraTest.testCapturePictureWithFDON= 1
+script.Continuous.CameraTest.testCapturepictureWithGeoLocationOn= 1
+script.Continuous.CameraTest.testCapturepictureWithGeoLocationOff= 1
+script.PerfectShot.CameraTest.testPerfectShotCaptureWithExposureAuto= 1
+script.PerfectShot.CameraTest.testPerfectShotCaptureWithExposurePlusOne= 1
+script.PerfectShot.CameraTest.testPerfectShotCaptureWithExposurePlusTwo= 1
+script.PerfectShot.CameraTest.testPerfectShotCaptureWithExposureRedOne= 1
+script.PerfectShot.CameraTest.testPerfectShotCaptureWithExposureRedTwo= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesAuto= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesSport= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesNightPortrait= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesLandscape= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesPortrait= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesNight= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturePictureWithScenesBarcode= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturepictureWithGeoLocationOn= 1
+script.PerfectShot.CameraTest.testPerfectShotCapturepictureWithGeoLocationOff= 1
+script.Panorama.CameraTest.testPanoramaCaptureWithExposureAuto= 1
+script.Panorama.CameraTest.testPanoramaCaptureWithExposurePlusOne= 1
+script.Panorama.CameraTest.testPanoramaCaptureWithExposurePlusTwo= 1
+script.Panorama.CameraTest.testPanoramaCaptureWithExposureRedOne= 1
+script.Panorama.CameraTest.testPanoramaCaptureWithExposureRedTwo= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithGeoLocationOn= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithGeoLocationOff= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithISOSettingAuto= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithISOSetting100= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithISOSetting200= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithISOSetting400= 1
+script.Panorama.CameraTest.testPanoramaCapturepictureWithISOSetting800= 1
+script.QuickSwitch.CameraTest.testQuickSwitchtoSinglemode= 1
+script.QuickSwitch.CameraTest.testQuickSwitchtoHDRmode= 1
+script.QuickSwitch.CameraTest.testQuickSwitchtoSmileCammode= 1
+script.QuickSwitch.CameraTest.testQuickSwitchtoBurstmode= 1
+script.QuickSwitch.CameraTest.testQuickSwitchtoPerfectShotmode= 1
+script.QuickSwitch.CameraTest.testQuickSwitchtoGallery= 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
