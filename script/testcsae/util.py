@@ -1,336 +1,3 @@
-Skip to content
- 
-This repository
-Explore
-Gist
-Blog
-Help
-chengguopiao
- 
- 
-1  Watch
-Star 0 Fork 0PUBLICGuanjunXu/Social_New
- branch: master  Social_New / script / util.py 
-GuanjunXu GuanjunXu 3 days ago Update util.py
-1 contributor
- file  318 lines (272 sloc)  12.128 kb EditRawBlameHistory Delete
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316
-317
 #!/usr/bin/python
 # coding:utf-8
 
@@ -356,7 +23,7 @@ MODE_ID             ={'single':'com.intel.camera22:id/mode_wave_photo',
                       'hdr':'com.intel.camera22:id/mode_wave_hdr',
                       'video':'com.intel.camera22:id/mode_wave_video',
                       'burstfast':'com.intel.camera22:id/mode_wave_burst',
-                      #'burstslow':'com.intel.camera22:id/mode_wave_burst',
+                      'burstslow':'com.intel.camera22:id/mode_wave_burst',
                       'perfectshot':'com.intel.camera22:id/mode_wave_perfectshot',
                       'panorama':'com.intel.camera22:id/mode_wave_panorama'
                       }
@@ -368,7 +35,7 @@ FLASH_SETTING       = ['off','on','auto']
 
 
 ##################################################
-#            Settings in each mode               #
+#     Settings in each mode                      #
 ##################################################
 SINGLE_SETTING      = ['testcamera','hits','location','picturesize','scencesmode','exposure','whitebalance','iso','delay']
 SMILE_SETTING       = ['location','picturesize','sencesmode','exposure','whitebalance','iso']
@@ -416,6 +83,22 @@ CAMERA_ID = 'adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.
 
 class Adb():
 
+    '''
+    This method support user execute adb commands,support push,pull,cat,refresh,ls,launch,rm
+
+    usage:  adb=Adb()
+    ------------------------------------------------------------------------------------------------------------
+    | adb.cmd('cat','xxxx/xxx.xml')                 |  adb shell cat xxxx/xxx.xml,return cat result             | 
+    ------------------------------------------------------------------------------------------------------------
+    | adb.cmd('refresh','/sdcard/')                 |  refresh media file under path /sdcard/,return ture/false |
+    ------------------------------------------------------------------------------------------------------------
+    | adb.cmd('ls','/sdcard/')                      |  get the file number under path /sdcard/,return number    |                         
+    ------------------------------------------------------------------------------------------------------------    
+    | adb.cmd('rm','xxxx/xxxx.jpg')                 |  delete xxxx/xxx.jpg,return true/false                    |
+    ------------------------------------------------------------------------------------------------------------ 
+    | adb.cmd('launch','com.intel.camera22/.Camera')|  launch social camera app,return adb commands             |
+    ------------------------------------------------------------------------------------------------------------
+    '''
     def cmd(self,action,path,t_path=None):
         #export android serial
         if not os.environ.has_key(ANDROID_SERIAL):
@@ -437,6 +120,10 @@ class Adb():
         else:
             raise Exception('commands is unsupported,only support [push,pull,cat,refresh,ls,launch,rm] now')
 
+    def _resetApp(self,path):
+        p = self._shellcmd('pm clear ' + path)
+        return p        
+
     def _refreshMedia(self,path):
         p = self._shellcmd('am broadcast -a android.intent.action.MEDIA_MOUNTED -d file://' + path)
         out = p.stdout.read().strip()
@@ -444,10 +131,6 @@ class Adb():
             return True
         else:
             return False
-
-    def _resetApp(self,path):
-        p = self._shellcmd('pm clear ' + path)
-        return p
 
     def _getFileNumber(self,path):
         p = self._shellcmd('ls ' + path + ' | wc -l')
@@ -514,16 +197,25 @@ class Adb():
         cmd = ADB + ' ' + func
         return subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 
+
 class SetMode():
     
     def switchcamera(self,mode):
         d(resourceId = MODE_LIST_BUTTON).click.wait()
+        try:
+            assert d(resourceId = 'com.intel.camera22:id/mode_wave_smile')
+            self._touchmode(mode)
+        except:
+            d(resourceId = 'com.intel.camera22:id/mode_wave_photo').click()
+            self._touchmode(mode)
+
+    def _touchmode(self,mode):
         if mode == 'burstslow':
             d(resourceId = MODE_ID[mode]).click.wait()
-            d(text = 'SLOW'),click.wait()
+            d(text = 'SLOW').click.wait()
         elif mode == 'burstfast':
             d(resourceId = MODE_ID[mode]).click.wait()
-            d(text = 'FAST').click()          
+            d(text = 'FAST').click.wait()
         else:
             d(resourceId = MODE_ID[mode]).click.wait()
 
@@ -535,10 +227,9 @@ class SetMode():
     def _setFDFRMode(self,option):
         FDFRStatus = commands.getoutput('adb shell cat /data/data/com.intel.camera22/shared_prefs/com.intel.camera22_preferences_0.xml | grep pref_fdfr_key')
         if FDFRStatus.find(option) == -1:
-            d(resourceId = 'com.intel.camera22:id/left_menus_face_tracking').click.wait()
+            d(resourceId = 'com.intel.camera22:id/left_menus_face_tracking').click()
         else:
             pass
-            #print 'current status is fdfr ' + option
 
     def setCameraSetting(self,mode,sub_mode,option):
         '''
@@ -556,9 +247,7 @@ class SetMode():
         '''
     
         settings = MODE[mode]
-        #if sub_mode > 8:
-            #return False
-        if sub_mode == 'flash':
+        if sub_mode== 'flash':
             self._setFlashMode(option)
         elif sub_mode == 'fdfr':
             self._setFDFRMode(option)
@@ -574,7 +263,6 @@ class SetMode():
                 d.swipe(680,180,100,180)
                 d(resourceId = HORI_LIST_BUTTON)[sub_mode-2-1].click.wait()
                 d(resourceId = HORI_LIST_BUTTON)[option+7-1].click.wait()
-            #return True
 
 class TouchButton():
 
@@ -592,11 +280,7 @@ class TouchButton():
             commands.getoutput(DRAWUP_CAPTUREBUTTON + '2000')
             time.sleep(2) 
         #Dictionary
-        takemode={
-                  'single'   :_singlecapture,
-                  'smile'    :_smilecapture,
-                  'longclick':_longclickcapture
-                  }    
+        takemode={'single':_singlecapture,'smile':_smilecapture,'longclick':_longclickcapture}    
         takemode[status]()
      
     def takePictureCustomTime(self,status): 
@@ -605,22 +289,18 @@ class TouchButton():
 
 
 
-    def takeVideo(self,status,capturetimes=0):
+    def takeVideo(self,status):
         # Start record video
         d(resourceId = CPTUREBUTTON_RESOURCEID).click.wait() 
-        for i in range(0,capturetimes):
-            #Tap on the center of the screen to capture image during taking video
-            d(resourceId = 'com.intel.camera22:id/camera_preview').click.wait()
-        # Set recording time, every capturing during record video takes about 3s
-        time.sleep(status - capturetimes*3 -2)
-        # Stop record video
+        # Set recording time
+        time.sleep(status - 2)
+        #Stop record video
         d(resourceId = CPTUREBUTTON_RESOURCEID).click.wait() 
         return True
 
-
     def switchBackOrFrontCamera(self,status):
-        # Dictionary
-        camerastatus = {'back': '0','front':'1'}
+        #Dictionary
+        camerastatus = {'back': '0','front':'1'}  
         # Get the current camera status
         currentstatus = commands.getoutput(CAMERA_ID)
         # Confirm the current status of the user is required
@@ -635,18 +315,10 @@ class TouchButton():
             currentstatus = commands.getoutput(CAMERA_ID)
             # check the result
             if currentstatus.find(camerastatus.get(status)) != -1:
-                #print ('set camera is '+status)
+                print ('set camera is '+status)
                 return True
             else:
-                #print ('set camera is '+status+' fail')
+                print ('set camera is '+status+' fail')
                 return False
         else:
-            #print('Current camera is ' + status)
-            pass
-
-if __name__ == '__main__':
-    a = Adb()
-    a.cmd('pm','com.intel.camera22')
-    print a.cmd('pm','com.intel.camera22')
- 
-Status API Training Shop Blog About © 2014 GitHub, Inc. Terms Privacy Security Contact
+            print('Current camera is ' + status)
