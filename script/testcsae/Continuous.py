@@ -555,7 +555,7 @@ class CameraTest(unittest.TestCase):
         sm.setCameraSetting('single',7,2)
         assert bool(a.cmd('cat',PATH + WHITEBALANCE).find('daylight')+1)
         # step 3
-        self._ContinuouCapturePic(fluorescent) 
+        self._ContinuouCapturePic() 
 
 # Test case 36
     def testCapturepictureWithWhiteBalanceCloudy(self):
@@ -569,7 +569,7 @@ class CameraTest(unittest.TestCase):
         sm.setCameraSetting('single',7,1)
         assert bool(a.cmd('cat',PATH + WHITEBALANCE).find('cloudy-daylight')+1)
         # step 3
-        self._ContinuouCapturePic(fluorescent) 
+        self._ContinuouCapturePic() 
 
 # Test case 37
     def testCapturePictureWithFDOff(self):
@@ -583,7 +583,7 @@ class CameraTest(unittest.TestCase):
         sm.setCameraSetting('single','fdfr','off')
         assert bool(a.cmd('cat',PATH1 + FDFR_KEY).find('off')+1)
         # step 3
-        self._ContinuouCapturePic(fluorescent) 
+        self._ContinuouCapturePic() 
 
 # Test case 38
     def testCapturePictureWithFDON(self):
@@ -597,7 +597,7 @@ class CameraTest(unittest.TestCase):
         sm.setCameraSetting('single','fdfr','on')
         assert bool(a.cmd('cat',PATH1 + FDFR_KEY).find('on')+1)
         # step 3
-        self._ContinuouCapturePic(fluorescent) 
+        self._ContinuouCapturePic() 
 
 # Test case 39
     def testCapturepictureWithGeoLocationOn(self):
@@ -611,7 +611,7 @@ class CameraTest(unittest.TestCase):
         sm.setCameraSetting('single',3,2)
         assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('on')+1)
         # step 3
-        self._ContinuouCapturePic(fluorescent) 
+        self._ContinuouCapturePic() 
 
 # Test case 40
     def testCapturepictureWithGeoLocationOff(self):
@@ -625,7 +625,7 @@ class CameraTest(unittest.TestCase):
         sm.setCameraSetting('single',3,1)
         assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('off')+1)
         # step 3
-        self._ContinuouCapturePic(fluorescent) 
+        self._ContinuouCapturePic() 
 
    
     def _ContinuouCapturePic(self):
