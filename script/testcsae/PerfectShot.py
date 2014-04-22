@@ -34,16 +34,27 @@ ACTIVITY_NAME = PACKAGE_NAME + '/.Camera'
 
 class PanoramaTest(unittest.TestCase):
     def setUp(self):
-        super(PanoramaTest,self).setUp()
-        # Delete all image/video files captured before
-        #a.cmd('rm','/sdcard/DCIM/*')
-        # Launch social camera
-        self._launchCamera()
-
+        # rm DCIM folder and refresh from adb shell
+        A.cmd('rm','/sdcard/DCIM/100ANDRO')
+        A.cmd('refresh','/sdcard/DCIM/100ANDRO')
+        #Because default camera after launching is single mode, so we set this step in setUp().
+        #Step 1. Launch single capture activity
+        A.cmd('launch','com.intel.camera22/.Camera')
+        time.sleep(2)
+        try:
+            assert d(text = 'OK').wait.exists(timeout = 3000)
+            d(text = 'OK').click.wait()
+        except:
+            pass
+        assert d(resourceId = 'com.intel.camera22:id/shutter_button'),'Launch camera failed!!'
+        super(MyTest,self).setUp()
 
     def tearDown(self):
-        super(PanoramaTest,self).tearDown()
+        #4.Exit  activity
         self._pressBack(4)
+        A.cmd('pm','com.intel.camera22')
+        super(MyTest,self).tearDown()
+
 
 
 
