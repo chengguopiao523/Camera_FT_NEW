@@ -30,6 +30,7 @@ PICTURE_SIZE_KEY ='| grep pref_camera_picture_size_key'
 HINTS_KEY ='| grep pref_camera_hints_key'
 TIMER_KEY ='| grep pref_camera_delay_shooting_key'
 WHITEBALANCE ='| grep pref_camera_whitebalance_key'
+FLASH_STATE='| grep pref_camera_flashmode_key'
 #################################
 
 PACKAGE_NAME = 'com.intel.camera22'
@@ -73,7 +74,7 @@ class CameraTest(unittest.TestCase):
         """
         # step 2
         sm.setCameraSetting('single','flash','on')
-        assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('on')+1)
+        assert bool(a.cmd('cat',PATH + FLASH_STATE).find('on')+1)
         # step 3
         self._ContinuouCapturePic()        
 
@@ -87,7 +88,7 @@ class CameraTest(unittest.TestCase):
         """
         # step 2
         sm.setCameraSetting('single','flash','off')
-        assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('off')+1)
+        assert bool(a.cmd('cat',PATH + FLASH_STATE).find('off')+1)
         # step 3
         self._ContinuouCapturePic()     
 
@@ -101,7 +102,7 @@ class CameraTest(unittest.TestCase):
         """
         # step 2
         sm.setCameraSetting('single','flash','auto')
-        assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('auto')+1)
+        assert bool(a.cmd('cat',PATH + FLASH_STATE).find('auto')+1)
         # step 3
         self._ContinuouCapturePic()
 
