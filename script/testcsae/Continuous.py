@@ -30,6 +30,7 @@ PICTURE_SIZE_KEY ='| grep pref_camera_picture_size_key'
 HINTS_KEY ='| grep pref_camera_hints_key'
 TIMER_KEY ='| grep pref_camera_delay_shooting_key'
 WHITEBALANCE ='| grep pref_camera_whitebalance_key'
+FLASH_STATE='| grep pref_camera_flashmode_key'
 #################################
 
 PACKAGE_NAME = 'com.intel.camera22'
@@ -39,11 +40,11 @@ class CameraTest(unittest.TestCase):
     
     def setUp(self):
         # rm DCIM folder and refresh from adb shell
-        A.cmd('rm','/sdcard/DCIM/100ANDRO')
-        A.cmd('refresh','/sdcard/DCIM/100ANDRO')
+        a.cmd('rm','/sdcard/DCIM/100ANDRO')
+        a.cmd('refresh','/sdcard/DCIM/100ANDRO')
         #Because default camera after launching is single mode, so we set this step in setUp().
         #Step 1. Launch single capture activity
-        A.cmd('launch','com.intel.camera22/.Camera')
+        a.cmd('launch','com.intel.camera22/.Camera')
         time.sleep(2)
         try:
             assert d(text = 'OK').wait.exists(timeout = 3000)
@@ -56,7 +57,7 @@ class CameraTest(unittest.TestCase):
     def tearDown(self):
         #4.Exit  activity
         self._pressBack(4)
-        A.cmd('pm','com.intel.camera22')
+        a.cmd('pm','com.intel.camera22')
         super(CameraTest,self).tearDown()
 
 
@@ -73,7 +74,7 @@ class CameraTest(unittest.TestCase):
         """
         # step 2
         sm.setCameraSetting('single','flash','on')
-        assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('on')+1)
+        assert bool(a.cmd('cat',PATH + FLASH_STATE).find('on')+1)
         # step 3
         self._ContinuouCapturePic()        
 
@@ -87,7 +88,7 @@ class CameraTest(unittest.TestCase):
         """
         # step 2
         sm.setCameraSetting('single','flash','off')
-        assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('off')+1)
+        assert bool(a.cmd('cat',PATH + FLASH_STATE).find('off')+1)
         # step 3
         self._ContinuouCapturePic()     
 
@@ -101,7 +102,7 @@ class CameraTest(unittest.TestCase):
         """
         # step 2
         sm.setCameraSetting('single','flash','auto')
-        assert bool(a.cmd('cat',PATH + LOCATION_KEY).find('auto')+1)
+        assert bool(a.cmd('cat',PATH + FLASH_STATE).find('auto')+1)
         # step 3
         self._ContinuouCapturePic()
 
